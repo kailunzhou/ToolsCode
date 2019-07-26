@@ -1,7 +1,7 @@
 import UIKit
 
 public class BaseNavViewController: UINavigationController {
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -9,7 +9,7 @@ public class BaseNavViewController: UINavigationController {
     }
 }
 
-public extension BaseNavViewController: UIGestureRecognizerDelegate {
+extension BaseNavViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if self.children.count > 1 {
             return true

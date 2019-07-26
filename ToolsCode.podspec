@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
 spec.name             = "ToolsCode"
-spec.version          = "0.0.1"
+spec.version          = "0.0.2"
 spec.license          = "MIT"
 spec.homepage         = "https://github.com/kailunzhou/ToolsCode"
 spec.author           = { "zklcode" => "372909335@qq.com" }
 spec.summary          = "ToolsCode summary"
-spec.source           = { :git => "https://github.com/kailunzhou/ToolsCode.git", :tag => "0.0.1"  }
+spec.source           = { :git => "https://github.com/kailunzhou/ToolsCode.git", :tag => "0.0.2"  }
 spec.platform         = :ios, "9.0"
 spec.source_files     = "Classes/**/*.{h,m,swift}", "Classes/Net/**/*.{h,m,swift}"
 spec.swift_versions   = "4.2"
