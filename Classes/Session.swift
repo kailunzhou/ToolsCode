@@ -69,7 +69,7 @@ public class Session: NSObject {
 }
 
 public struct UserInfo: Mappable {/// 用户信息
-    init?(map: Map) {}
+    public init?(map: Map) {}
     
     var depositAmount: String?//代扣押金
     var isDeduction: Int64?//是否已扣除押金(1.已扣除,2.未扣除)
@@ -80,7 +80,7 @@ public struct UserInfo: Mappable {/// 用户信息
     var token: String?//这里没有返回
     var undoneOrderNum: Int64?//未支付订单数
     
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         depositAmount             <- map["depositAmount"]
         isDeduction               <- map["isDeduction"]
         isOpenBusCode             <- map["isOpenBusCode"]
@@ -93,7 +93,7 @@ public struct UserInfo: Mappable {/// 用户信息
 }
 
 public struct PayChannelResp: Mappable {
-    init?(map: Map) {}
+    public init?(map: Map) {}
     
     var backUrl: String?//支付方式背景图标
     var channelId: Int64?//支付渠道id
@@ -103,7 +103,7 @@ public struct PayChannelResp: Mappable {
     var payType: Int64?//支付类型 1.支付宝 (绑定支付方式判断需要)
     var remonnedStatus: Int64?//推荐状态(为2的时候为推荐支付方式)
     
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         backUrl                       <- map["backUrl"]
         channelId                     <- map["channelId"]
         channelName                   <- map["channelName"]
@@ -115,14 +115,14 @@ public struct PayChannelResp: Mappable {
 }
 
 public struct ObtainQRCodeResp: Mappable {
-    init?(map: Map) {}
+    public init?(map: Map) {}
     
     var effectiveTime: Int64?
     var expireTime: Int64?
     var obtain: Bool?
     var qrCode: String?
     
-    mutating func mapping(map: Map) {
+    public mutating func mapping(map: Map) {
         effectiveTime        <- map["effectiveTime"]
         expireTime           <- map["expireTime"]
         obtain               <- map["obtain"]

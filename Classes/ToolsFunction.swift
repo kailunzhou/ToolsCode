@@ -134,27 +134,6 @@ public func clearCache() {
     }
 }
 
-// MARK: - 提示弹窗
-public func showAlert(_ message: String, _ cancelTitle: String) {
-    let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-    let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
-    alertVC.addAction(cancelAction)
-    UIApplication.shared.keyWindow?.topMostVC?.present(alertVC, animated: true, completion: nil)
-}
-
-public func showAlert(_ message: String, _ confirmTitle: String, _ cancelTitle: String, _ confirmHandler: @escaping handle, _ cancelHandler: @escaping handle) {
-    let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-    let confirmAction = UIAlertAction(title: confirmTitle, style: .default) { (_) in
-        confirmHandler()
-    }
-    let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel) { (_) in
-        cancelHandler()
-    }
-    alertVC.addAction(confirmAction)
-    alertVC.addAction(cancelAction)
-    UIApplication.shared.keyWindow?.topMostVC?.present(alertVC, animated: true, completion: nil)
-}
-
 /*
  * 添加一个公共参数时间戳
  */
