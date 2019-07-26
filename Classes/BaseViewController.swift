@@ -1,7 +1,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class BaseViewController: UIViewController {
+public class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexString: "F5F5FA")

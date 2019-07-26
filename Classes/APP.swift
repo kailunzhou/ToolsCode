@@ -2,8 +2,8 @@ import Foundation
 import IQKeyboardManagerSwift
 import Reachability
 
-class APP: NSObject {
-    static let `default` = APP()
+public class APP: NSObject {
+    public static let `default` = APP()
     let reachability = Reachability()
     
     public func setup() {

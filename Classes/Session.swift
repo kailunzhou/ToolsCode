@@ -1,8 +1,8 @@
 import UIKit
 import ObjectMapper
 
-class Session: NSObject {
-    static let `default` = Session()
+public class Session: NSObject {
+    public static let `default` = Session()
     
     var phone: String? {///登录账号
         get {
@@ -68,7 +68,7 @@ class Session: NSObject {
     }
 }
 
-struct UserInfo: Mappable {/// 用户信息
+public struct UserInfo: Mappable {/// 用户信息
     init?(map: Map) {}
     
     var depositAmount: String?//代扣押金
@@ -92,7 +92,7 @@ struct UserInfo: Mappable {/// 用户信息
     }
 }
 
-struct PayChannelResp: Mappable {
+public struct PayChannelResp: Mappable {
     init?(map: Map) {}
     
     var backUrl: String?//支付方式背景图标
@@ -114,7 +114,7 @@ struct PayChannelResp: Mappable {
     }
 }
 
-struct ObtainQRCodeResp: Mappable {
+public struct ObtainQRCodeResp: Mappable {
     init?(map: Map) {}
     
     var effectiveTime: Int64?

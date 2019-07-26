@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import CommonCrypto
 
-extension String {
+public extension String {
     /// MD5加密
     /// - Returns: md5加密字符串
     func md5() -> String {
@@ -67,7 +67,7 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     func toBase64() -> String {
         let plainData = self.data(using: String.Encoding.utf8)
         let base64String = plainData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
@@ -84,7 +84,7 @@ extension String {
     }
 }
 
-extension Int64 {
+public extension Int64 {
     ///将整型转成价格
     var priceFormatterString: String? {
         return String(format: "%.2f", Double(self) / 100)

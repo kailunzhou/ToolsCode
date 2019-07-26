@@ -1,6 +1,6 @@
 import UIKit
 
-class BaseNavViewController: UINavigationController {
+public class BaseNavViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
@@ -9,7 +9,7 @@ class BaseNavViewController: UINavigationController {
     }
 }
 
-extension BaseNavViewController: UIGestureRecognizerDelegate {
+public extension BaseNavViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if self.children.count > 1 {
             return true

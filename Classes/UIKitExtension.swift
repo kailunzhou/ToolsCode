@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIView {
+public extension UIView {
     var x: CGFloat {
         get {
             return self.frame.origin.x
@@ -129,7 +129,7 @@ extension UIView {
     }
 }
 ///设置边线颜色
-extension CALayer {
+public extension CALayer {
     var borderUIColor: UIColor {
         get {
             return UIColor(cgColor: self.borderColor!)
@@ -139,7 +139,7 @@ extension CALayer {
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     ///屏幕整体上移
     func changeViewY(_ height: CGFloat) {
         if WIDTH > 320 {
@@ -160,7 +160,7 @@ extension UIViewController {
     }
 }
 
-extension UIColor {
+public extension UIColor {
     /**
      hexString: 6位16进制字符串 如0xFFFFFF
      */
@@ -192,7 +192,7 @@ extension UIColor {
     }
 }
 
-extension CAGradientLayer {
+public extension CAGradientLayer {
     ///渐变色
     func gradientLayer(_ start: String, _ end: String, _ isV: Bool) -> CAGradientLayer {
         //定义渐变的颜色
@@ -210,7 +210,7 @@ extension CAGradientLayer {
     }
 }
 
-extension UIWindow {
+public extension UIWindow {
     /// 获取UIWindow的最上层控制器
     // fixme: 考虑如果presented的是UIAlertController时该如何处理
     var topMostVC: UIViewController? {
@@ -232,33 +232,33 @@ extension UIWindow {
     }
 }
 
-extension UIStoryboard {
+public extension UIStoryboard {
     public class func createControllerWithName(_ name: String, identifier id: String) -> UIViewController {
         return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: id)
     }
 }
 
-extension UITextField {
-    public func setLeftMode() {
+public extension UITextField {
+    func setLeftMode() {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.height))
         self.leftView = view
         self.leftViewMode = .always
     }
     
-    public func setRightMode(_ btn: UIButton) {
+    func setRightMode(_ btn: UIButton) {
         self.rightView = btn
         self.rightViewMode = .whileEditing
     }
     
-    public func setLeftMode(_ btn: UIButton) {
+    func setLeftMode(_ btn: UIButton) {
         self.leftView = btn
         self.leftViewMode = .always
     }
 }
 
-extension UIButton {
+public extension UIButton {
     ///快捷创建按钮
-    public func createWith( title: String?, _ titleColor: UIColor, _ font: UIFont) {
+    func createWith( title: String?, _ titleColor: UIColor, _ font: UIFont) {
         if let str = title {
             self.setTitle(str, for: .normal)
         }else {
@@ -270,9 +270,9 @@ extension UIButton {
     }
 }
 
-extension UILabel {
+public extension UILabel {
     ///快捷创建标签
-    public func createWith(text: String?, textColor: UIColor, font: UIFont) {
+    func createWith(text: String?, textColor: UIColor, font: UIFont) {
         if let str = text {
             self.text = str
         }else {

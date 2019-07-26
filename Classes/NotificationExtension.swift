@@ -1,22 +1,21 @@
 import Foundation
 
-extension Notification.Name {
-    
+public extension Notification.Name {
     struct App {
         ///网络状态已经变更
-        static let NetworkingDidChange = Notification.Name("NetworkingDidChange")
+        public static let NetworkingDidChange = Notification.Name("NetworkingDidChange")
         ///点击底部弹窗
-        static let ChangeTabbarSelected = Notification.Name("ChangeTabbarSelected")
+        public static let ChangeTabbarSelected = Notification.Name("ChangeTabbarSelected")
         ///推送通知工作是否正常
-        static let DidChannelConnectedSuccess = Notification.Name("DidChannelConnectedSuccess")
+        public static let DidChannelConnectedSuccess = Notification.Name("DidChannelConnectedSuccess")
         ///推送通知工作是否正常
-        static let EBBannerViewDidClickNotification = Notification.Name("EBBannerViewDidClickNotification")
+        public static let EBBannerViewDidClickNotification = Notification.Name("EBBannerViewDidClickNotification")
         ///是否修改推送权限
-        static let IsChangePushController = Notification.Name("IsChangePushController")
+        public static let IsChangePushController = Notification.Name("IsChangePushController")
     }
 }
 
-extension NotificationCenter {
+public extension NotificationCenter {
     static func addNotification(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?) {
         self.default.addObserver(observer, selector: aSelector, name: aName, object: nil)
     }

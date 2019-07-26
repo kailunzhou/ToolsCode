@@ -1,7 +1,7 @@
 import Foundation
 
-class Joggle: NSObject {
-    static let `default` = Joggle()
+public class Joggle: NSObject {
+    public static let `default` = Joggle()
     
     /**** Other ****/
     let getUserInfo = "/member/getUserInfo"//获取用户基本信息
@@ -36,18 +36,18 @@ class Joggle: NSObject {
     let addFeedback = "/my/addFeedback"//新增意见反馈
     let feedback = "/my/feedback"//获取我的意见反馈列表
     
-    var joggle: String?//服务器地址
-    var channelNo: String?//渠道号
-    var sign: String?//签名
+    public var joggle: String?//服务器地址
+    public var channelNo: String?//渠道号
+    public var sign: String?//签名
     
-    func initParam(_ joggle: String?, _ channelNo: String?, _ sign: String?) {
+    public func initParam(_ joggle: String?, _ channelNo: String?, _ sign: String?) {
         self.joggle = joggle
         self.channelNo = channelNo
         self.sign = sign
     }
 }
 
-extension String {
+public extension String {
     func netUrl() -> String {
         return (Joggle.default.joggle ?? "") + self
     }

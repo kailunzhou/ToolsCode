@@ -4,13 +4,13 @@ import MBProgressHUD
 
 private let NetworkMethodShareInstance = NetMethod()
 
-class NetMethod {
-    class var share : NetMethod {
+public class NetMethod {
+    public class var share : NetMethod {
         return NetworkMethodShareInstance
     }
 }
 
-extension NetMethod {
+public extension NetMethod {
     /**** Other ****/
     ///获取用户基本信息
     func getUserInfo(okAction : @escaping ()->()) {

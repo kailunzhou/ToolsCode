@@ -1,6 +1,6 @@
 import UIKit
 
-func getRequestId() -> String {
+public func getRequestId() -> String {
     let date = Date()
     let formart = DateFormatter()
     formart.dateFormat = "yyyyMMddHHmmss"
@@ -8,7 +8,7 @@ func getRequestId() -> String {
     return timeStamp + returnARCString(8)
 }
 
-func returnARCString(_ count: Int) -> String {///返回一个随机字符串
+public func returnARCString(_ count: Int) -> String {///返回一个随机字符串
     let charArr = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"]
     var arc4 = ""
     for _ in 0 ..< count {
@@ -17,12 +17,12 @@ func returnARCString(_ count: Int) -> String {///返回一个随机字符串
     return arc4
 }
 
-func getTimestamp() -> String {
+public func getTimestamp() -> String {
     let date = Int64(Date().timeIntervalSince1970)
     return "\(date)"
 }
 
-func controllerFromString(_ className: String) -> UIViewController? {
+public func controllerFromString(_ className: String) -> UIViewController? {
     ///1.获取命名空间
     guard let clsName = Bundle.main.infoDictionary!["CFBundleExecutable"] else {
         return UIViewController.init()
@@ -38,7 +38,7 @@ func controllerFromString(_ className: String) -> UIViewController? {
     return clsType.init()
 }
 
-func getWidthOrHeight(_ str: String?, _ font: UIFont, _ isW: Bool, _ length: CGFloat) -> CGFloat {
+public func getWidthOrHeight(_ str: String?, _ font: UIFont, _ isW: Bool, _ length: CGFloat) -> CGFloat {
     let label = UILabel()
     label.text = str
     label.numberOfLines = 0
@@ -48,7 +48,7 @@ func getWidthOrHeight(_ str: String?, _ font: UIFont, _ isW: Bool, _ length: CGF
     return isW ? rect.size.height : rect.size.width
 }
 
-func dataToJSON(data: Data) -> AnyObject? {
+public func dataToJSON(data: Data) -> AnyObject? {
     do {
         return try JSONSerialization.jsonObject(with: data , options: .mutableContainers) as AnyObject
     } catch {
@@ -59,7 +59,7 @@ func dataToJSON(data: Data) -> AnyObject? {
 /*
  * 获得纯色背景图片
  */
-func createColorImage(_ frame: CGRect, color: UIColor) -> UIImage {
+public func createColorImage(_ frame: CGRect, color: UIColor) -> UIImage {
     
     UIGraphicsBeginImageContext(frame.size)
     let context: CGContext = UIGraphicsGetCurrentContext()!
@@ -74,7 +74,7 @@ func createColorImage(_ frame: CGRect, color: UIColor) -> UIImage {
 /*
  * 获得宽度的尺寸
  */
-func getSizeOnLabel(_ labelStr: UILabel, _ width: CGFloat) -> CGSize {
+public func getSizeOnLabel(_ labelStr: UILabel, _ width: CGFloat) -> CGSize {
     
     let content = labelStr.text! as NSString
     let attributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): labelStr.font] as [NSAttributedString.Key: Any]
@@ -88,7 +88,7 @@ func getSizeOnLabel(_ labelStr: UILabel, _ width: CGFloat) -> CGSize {
 }
 
 // MARK: - 清除缓存
-func fileSizeOfCache() -> Int {
+public func fileSizeOfCache() -> Int {
     // 取出cache文件夹目录 缓存文件都在这个目录下
     let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
     //缓存目录路径
@@ -114,7 +114,7 @@ func fileSizeOfCache() -> Int {
     return mm
 }
 
-func clearCache() {
+public func clearCache() {
     
     delog("清除中...")
     // 取出cache文件夹目录 缓存文件都在这个目录下
@@ -135,14 +135,14 @@ func clearCache() {
 }
 
 // MARK: - 提示弹窗
-func showAlert(_ message: String, _ cancelTitle: String) {
+public func showAlert(_ message: String, _ cancelTitle: String) {
     let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
     alertVC.addAction(cancelAction)
     UIApplication.shared.keyWindow?.topMostVC?.present(alertVC, animated: true, completion: nil)
 }
 
-func showAlert(_ message: String, _ confirmTitle: String, _ cancelTitle: String, _ confirmHandler: @escaping handle, _ cancelHandler: @escaping handle) {
+public func showAlert(_ message: String, _ confirmTitle: String, _ cancelTitle: String, _ confirmHandler: @escaping handle, _ cancelHandler: @escaping handle) {
     let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     let confirmAction = UIAlertAction(title: confirmTitle, style: .default) { (_) in
         confirmHandler()
@@ -158,7 +158,7 @@ func showAlert(_ message: String, _ confirmTitle: String, _ cancelTitle: String,
 /*
  * 添加一个公共参数时间戳
  */
-func getTimeLine() -> String {
+public func getTimeLine() -> String {
     //
     let date = Date()
     let formart = DateFormatter()
@@ -170,7 +170,7 @@ func getTimeLine() -> String {
 /*
  * 通过时间戳获得时间
  */
-func getTimeLineFromUNIX(_ time: UInt64, formate: String?) -> String {
+public func getTimeLineFromUNIX(_ time: UInt64, formate: String?) -> String {
     //
     let timeInterval:TimeInterval = TimeInterval(time)
     let date = Date(timeIntervalSince1970: timeInterval)
@@ -183,7 +183,7 @@ func getTimeLineFromUNIX(_ time: UInt64, formate: String?) -> String {
 /*
  * 通过时间获得时间戳
  */
-func getUNIXFromTimeLine(_ time: String) -> UInt64 {
+public func getUNIXFromTimeLine(_ time: String) -> UInt64 {
     //
     let dateformatter = DateFormatter()
     dateformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -199,7 +199,7 @@ func getUNIXFromTimeLine(_ time: String) -> UInt64 {
 /*
  * 在视图控制器中移除当前页面
  */
-func removeThisVC(_ vc: UIViewController) {
+public func removeThisVC(_ vc: UIViewController) {
     
     if var arr = vc.navigationController?.viewControllers, arr.count > 1 {
         
@@ -215,7 +215,7 @@ func removeThisVC(_ vc: UIViewController) {
 /*
  * 获得仿朋友圈倒计时
  */
-func getShowFormat(requestDate:Date) -> String {
+public func getShowFormat(requestDate:Date) -> String {
     
     //获取当前时间
     let calendar = Calendar.current

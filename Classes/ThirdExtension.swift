@@ -2,9 +2,8 @@ import Foundation
 import MJRefresh
 import MBProgressHUD
 
-struct RefreshManager {
-    
-    static func header(_ refresh: (() -> Void)?) -> MJRefreshNormalHeader? {
+public struct RefreshManager {
+    public static func header(_ refresh: (() -> Void)?) -> MJRefreshNormalHeader? {
         let mj_header = MJRefreshNormalHeader {
             refresh?()
         }
@@ -15,7 +14,7 @@ struct RefreshManager {
         return mj_header
     }
     
-    static func footer(_ refresh: (() -> Void)?) -> MJRefreshAutoNormalFooter? {
+    public static func footer(_ refresh: (() -> Void)?) -> MJRefreshAutoNormalFooter? {
         let mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
             refresh?()
         })
@@ -26,7 +25,7 @@ struct RefreshManager {
     }
 }
 
-extension MBProgressHUD {
+public extension MBProgressHUD {
     static func showLoading(_ view: UIView?, with title: String?) {
         let hud = MBProgressHUD.showAdded(to: rootView(view), animated: true)
         hud.contentColor = .white
