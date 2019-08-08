@@ -97,10 +97,8 @@ public extension String {
             for i in 0..<17 {
                 idCardWiSum += Int((self as NSString).substring(with: NSRange(location: i, length: 1)))! * Int(idCardWi[i])!
             }
-            let idCardMod: Int = idCardWiSum % 11
-            //计算出校验码所在数组的位置
-            let idCardLast: String = self.substring(from: self.index(self.endIndex, offsetBy: -1))
-            //得到最后一位身份证号码
+            let idCardMod: Int = idCardWiSum % 11///计算出校验码所在数组的位置
+            let idCardLast: String = String(self.suffix(1))///得到最后一位身份证号码
             //如果等于2，则说明校验码是10，身份证号码最后一位应该是X
             if idCardMod == 2 {
                 if idCardLast == "X" || idCardLast == "x" {

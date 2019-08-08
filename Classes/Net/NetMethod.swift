@@ -408,7 +408,7 @@ public extension NetMethod {
     }
     ///卡号查询
     func cardQuery(_ IDNo: String?, _ view: UIView?, okAction: @escaping (_ dataDic: [String: Any]?)->()) {
-        guard let IDNos = IDNo, IDNos.count > 0 else {//regularIDCard()
+        guard let IDNos = IDNo, IDNos.regularIDCard() else {
             MBProgressHUD.showFailure(view, with: "请输入正确的身份证号", complete: nil)
             return
         }
