@@ -326,6 +326,158 @@ public extension NetMethod {
             delog(err)
         }
     }
+    ///充值订单查询
+    func cardOrderList(_ cardNo: String?, _ queryDate: String?, _ view: UIView?, okAction: @escaping (_ dataList: [[String: Any]]?)->()) {
+        guard let cardNos = cardNo, let queryDates = queryDate else {
+            return
+        }
+        let param: [String: Any] = ["cardNo": cardNos,
+                                    "queryDate": queryDates]
+        Net.share.postRequest(urlString: Joggle.default.cardOrderList.netUrl(), params: param, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    if let dataList = result["Data"] as? [[String: Any]], dataList.count > 0 {
+                        okAction(dataList)
+                    } else {
+                        okAction(nil)
+                    }
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog(err)
+        }
+    }
+    ///开发票
+    func doinvoice(_ amt: String?, _ cardNo: String?, _ orderIds: [String]?, _ view: UIView?, okAction: @escaping (_ dataDic: [String: Any]?)->()) {
+        guard let amts = amt, let cardNos = cardNo else {
+            return
+        }
+        guard let orderIdss = orderIds, orderIdss.count > 0 else {
+            MBProgressHUD.showFailure(view, with: "请勾选至少一个充值记录进行开票", complete: nil)
+            return
+        }
+        let param: [String: Any] = ["amt": amts,
+                                    "cardNo": cardNos,
+                                    "orderIds": orderIdss]
+        Net.share.postRequest(urlString: Joggle.default.doinvoice.netUrl(), params: param, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    if let dataDic = result["Data"] as? [String: Any] {
+                        okAction(dataDic)
+                    } else {
+                        okAction(nil)
+                    }
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog()
+        }
+    }
+    func invoiceList(_ view: UIView?, okAction: @escaping (_ dataList: [[String: Any]]?)->()) {
+        Net.share.postRequest(urlString: Joggle.default.invoiceList.netUrl(), params: nil, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    if let dataList = result["Data"] as? [[String: Any]] {
+                        okAction(dataList)
+                    } else {
+                        okAction(nil)
+                    }
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog(err)
+        }
+    }
+    ///卡号查询
+    func cardQuery(_ IDNo: String?, _ view: UIView?, okAction: @escaping (_ dataDic: [String: Any]?)->()) {
+        guard let IDNos = IDNo, IDNos.count > 0 else {//regularIDCard()
+            MBProgressHUD.showFailure(view, with: "请输入正确的身份证号", complete: nil)
+            return
+        }
+        let param: [String: Any] = ["IDNo": IDNos]
+        Net.share.postRequest(urlString: Joggle.default.cardQuery.netUrl(), params: param, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    if let dataDic = result["Data"] as? [String: Any] {
+                        okAction(dataDic)
+                    } else {
+                        okAction(nil)
+                    }
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog(err)
+        }
+    }
+    ///卡号挂失
+    func lossCard(_ IDNo: String?, _ cardNo: String?, _ view: UIView?, okAction: @escaping ()->()) {
+        guard let IDNos = IDNo, let cardNos = cardNo else {
+            return
+        }
+        let param: [String: Any] = ["IDNo": IDNos,
+                                    "cardNo": cardNos]
+        Net.share.postRequest(urlString: Joggle.default.lossCard.netUrl(), params: param, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    okAction()
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog(err)
+        }
+    }
+    ///挂失记录查询
+    func cardLossOrderList(_ view: UIView?, okAction: @escaping (_ dataList: [[String: Any]]?)->()) {
+        Net.share.postRequest(urlString: Joggle.default.cardLossOrderList.netUrl(), params: nil, view: view, success: { (result) in
+            delog(result)
+            if let Status = result["Status"] as? String {
+                switch Status {
+                case "000000":
+                    if let dataList = result["Data"] as? [[String: Any]], dataList.count > 0 {
+                        okAction(dataList)
+                    } else {
+                        okAction(nil)
+                    }
+                default:
+                    if let message = result["Message"] as? String {
+                        MBProgressHUD.showFailure(view, with: message, complete: nil)
+                    }
+                }
+            }
+        }) { (err) in
+            delog(err)
+        }
+    }
     /**** Mall ****/
     /**** Traffic ****/
     ///用户绑定详细信息
@@ -431,7 +583,7 @@ public extension NetMethod {
             MBProgressHUD.showFailure(view, with: "请先验证身份证号", complete: nil)
             return
         }
-        if Session.default.loginUser?.payChannelResp == nil {//未绑定支付方式
+        if Session.default.loginUser?.payChannelList == nil {//未绑定支付方式
             MBProgressHUD.showFailure(view, with: "请先绑定支付方式", complete: nil)
             return
         }
@@ -482,8 +634,8 @@ public extension NetMethod {
             return
         }
         let param: [String: Any] = ["channelId": "\(channelIds)",
-                                    "payType": "\(payTypes)",
-                                    "returnUrl": returnUrls]
+            "payType": "\(payTypes)",
+            "returnUrl": returnUrls]
         Net.share.getRequest(urlString: Joggle.default.bindingPayChannel.netUrl(), params: param, view: view, success: { (result) in
             delog(result)
             if let Status = result["Status"] as? String {
@@ -634,7 +786,7 @@ public extension NetMethod {
     }
     ///新增意见反馈
     func addFeedback(_ content: String?, _ type: String?, _ img: UIImage?, _ view: UIView?, okAction: @escaping ()->()) {
-        guard let contents = content else {
+        guard let contents = content , contents != "您的问题与意见，我们会悉心聆听…" else {
             MBProgressHUD.showFailure(view, with: "反馈内容不能为空", complete: nil)
             return
         }

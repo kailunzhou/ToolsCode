@@ -233,7 +233,7 @@ public extension UIWindow {
 }
 
 public extension UIStoryboard {
-    func createControllerWithName(_ name: String, identifier id: String) -> UIViewController {
+    public class func createControllerWithName(_ name: String, identifier id: String) -> UIViewController {
         return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: id)
     }
 }
