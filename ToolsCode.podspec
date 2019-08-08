@@ -8,7 +8,7 @@ spec.summary          = "ToolsCode summary"
 spec.source           = { :git => "https://github.com/kailunzhou/ToolsCode.git", :tag => "0.0.5"  }
 spec.platform         = :ios, "9.0"
 spec.source_files     = "Classes/**/*.{h,m,swift}", "Classes/Net/**/*.{h,m,swift}"
-spec.swift_versions   = "4.2"
+spec.swift_version   = "4.2"
 spec.dependency       "Alamofire"
 spec.dependency       "ObjectMapper"
 spec.dependency       "MJRefresh"
