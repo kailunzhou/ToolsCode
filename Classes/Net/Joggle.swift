@@ -37,10 +37,41 @@ public class Joggle: NSObject {
     ///获取常见问题列表
     let commonQuestions = "/userCenter/commonQuestions"
     
+    /**** 支付方式管理 ****/
+    ///获取支付方式列表
+    let getPayChannelList = "/userPayMethod/getPayChannelList"
+    ///获得绑定支付方式跳转地址
+    let bindingPayChannel = "/userPayMethod/bindingPayChannel"
+    ///用户绑定详细信息
+    let upPayInfo = "/userPayMethod/upPayInfo"
+    ///解绑支付方式
+    let unPayMethod = "/userPayMethod/unPayMethod"
+    
+    /**** Home ****/
+    ///获取首页所有展示信息
+    let getHomeViews = "/index/getHomeViews"
+    ///获取首页新闻选项详细列表
+    let getHomeNewsOptionViewList = "/index/getHomeNewsOptionViewList"
+    
+    /**** 乘车详情 ****/
+    ///乘车记录
+    let alipayOrderInfoList = "/order/list"
+    ///乘车详情
+    let alipayOrderInfoDetail = "/order/detail"
+    ///发起主动扣款
+    let alipayOrderInfoPayOrder = "/order/payOrder"
+    
+    /**** 开通扫码乘车 ****/
+    ///验证身份证信息
+    let authID = "/cards/authID"
+    ///验证实体卡信息
+    let verificationPhysicalCard = "/cards/verificationPhysicalCard"
+    ///绑定一卡通账户
+    let openUniversalCard = "/cards/openUniversalCard"
+    
+    /******** 夏都通部分 ********/
     ///获取我的信息列表
     let messages = "/userCenter/messages"
-    
-    
     
     /**** Report ****/
     ///卡号查询
@@ -49,7 +80,6 @@ public class Joggle: NSObject {
     let lossCard = "/nfc/card/lossCard"
     ///挂失记录查询
     let cardLossOrderList = "/nfc/card/cardLossOrderList"
-    
     /**** Invoice ****/
     ///充值订单查询
     let cardOrderList = "/nfc/card/cardOrderList"
@@ -57,24 +87,6 @@ public class Joggle: NSObject {
     let doinvoice = "/invoice/doinvoice"
     ///发票开具记录查询
     let invoiceList = "/invoice/invoiceList"
-    
-    /**** Home ****/
-    ///获取首页所有展示信息
-    let getHomeViews = "/index/getHomeViews"
-    ///获取首页新闻选项详细列表
-    let getHomeNewsOptionViewList = "/index/getHomeNewsOptionViewList"
-    
-    /**** Traffic ****/
-    let upPayInfo = "/userPayMethod/upPayInfo"//用户绑定详细信息
-    let unPayMethod = "/userPayMethod/unPayMethod"//解绑支付方式
-    let authID = "/cards/authID"//验证身份证信息
-    let verificationPhysicalCard = "/cards/verificationPhysicalCard"//验证实体卡信息
-    let openUniversalCard = "/cards/openUniversalCard" //绑定一卡通账户
-    let getPayChannelList = "/userPayMethod/getPayChannelList"//获取支付方式列表
-    let bindingPayChannel = "/userPayMethod/bindingPayChannel"//获得绑定支付方式跳转地址
-    let alipayOrderInfoList = "/order/list"//乘车记录
-    let alipayOrderInfoDetail = "/order/detail"//乘车详情
-    let alipayOrderInfoPayOrder = "/order/payOrder"//发起主动扣款
     
     public var joggle: String?//服务器地址
     public var channelNo: String?//渠道号
